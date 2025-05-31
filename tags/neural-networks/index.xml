@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Neural Networks on My Portfolio</title>
-    <link>http://localhost:1313/tags/neural-networks/</link>
+    <link>https://Yashh9706.github.io/tags/neural-networks/</link>
     <description>Recent content in Neural Networks on My Portfolio</description>
     <generator>Hugo -- 0.147.7</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 31 May 2025 12:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://Yashh9706.github.io/tags/neural-networks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Why Deep Learning Is Changing the World: A Beginner’s Guide to AI and Neural Networks</title>
-      <link>http://localhost:1313/posts/deep-learning/</link>
+      <link>https://Yashh9706.github.io/posts/deep-learning/</link>
       <pubDate>Sat, 31 May 2025 12:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/deep-learning/</guid>
+      <guid>https://Yashh9706.github.io/posts/deep-learning/</guid>
       <description>&lt;h1 id=&#34;hello-everyone&#34;&gt;Hello, everyone!&lt;/h1&gt;
 &lt;p&gt;My name is Yash, and welcome to my new blog! In this post, we will dive into one of the hottest topics in the world of technology: &lt;strong&gt;Deep Learning&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Here’s what we’ll cover:&lt;/p&gt;
@@ -30,7 +30,7 @@
 &lt;hr&gt;
 &lt;h2 id=&#34;why-deep-learning-is-changing-the-world-a-beginners-guide-to-ai-and-neural-networks&#34;&gt;Why Deep Learning Is Changing the World: A Beginner’s Guide to AI and Neural Networks&lt;/h2&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;img alt=&#34;Deep Learning Illustration&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/posts/figure-1.png&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img alt=&#34;Deep Learning Illustration&#34; loading=&#34;lazy&#34; src=&#34;https://Yashh9706.github.io/images/posts/figure-1.png&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
