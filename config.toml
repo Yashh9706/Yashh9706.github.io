@@ -1,0 +1,23 @@
+baseURL = "https://Yashh9706.github.io/"
+title = "My Portfolio"
+theme = "PaperMod"
+languageCode = "en-us"
+
+[params]
+  author = "Yash Dave"
+  homeInfoParams = { Title = "Hi, I'm Yash Dave 👋", Content = "Welcome to my portfolio." }
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 1
+
+[[menu.main]]
+  name = "Projects"
+  url = "/projects/"
+  weight = 2
+
+[[menu.main]]
+  name = "Blog"
+  url = "/posts/"
+  weight = 3
