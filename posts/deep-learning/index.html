@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Why Deep Learning Is Changing the World: A Beginner’s Guide to AI and Neural Networks | My Portfolio</title>
+<meta name="keywords" content="AI, Deep Learning, Neural Networks">
+<meta name="description" content="Hello, everyone!
+My name is Yash, and welcome to my new blog! In this post, we will dive into one of the hottest topics in the world of technology: Deep Learning.
+Here’s what we’ll cover:
+
+What is Deep Learning?
+Understanding AI, Machine Learning, and Deep Learning.
+What is Machine Learning?
+What is Deep Learning?
+What is an Artificial Neural Network (ANN)?
+Types of Neural Networks.
+Why is Deep Learning So Popular?
+Deep Learning vs Machine Learning: Key Differences.
+Why is Deep Learning Famous Today?
+
+
+Why Deep Learning Is Changing the World: A Beginner’s Guide to AI and Neural Networks
+
+">
+<meta name="author" content="Yash Dave">
+<link rel="canonical" href="http://localhost:1313/posts/deep-learning/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/deep-learning/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="My Portfolio (Alt + H)">My Portfolio</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/projects/" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Why Deep Learning Is Changing the World: A Beginner’s Guide to AI and Neural Networks
+    </h1>
+    <div class="post-meta"><span title='2025-05-31 12:00:00 +0000 UTC'>May 31, 2025</span>&nbsp;·&nbsp;Yash Dave
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="hello-everyone">Hello, everyone!<a hidden class="anchor" aria-hidden="true" href="#hello-everyone">#</a></h1>
+<p>My name is Yash, and welcome to my new blog! In this post, we will dive into one of the hottest topics in the world of technology: <strong>Deep Learning</strong>.</p>
+<p>Here’s what we’ll cover:</p>
+<ul>
+<li>What is Deep Learning?</li>
+<li>Understanding AI, Machine Learning, and Deep Learning.</li>
+<li>What is Machine Learning?</li>
+<li>What is Deep Learning?</li>
+<li>What is an Artificial Neural Network (ANN)?</li>
+<li>Types of Neural Networks.</li>
+<li>Why is Deep Learning So Popular?</li>
+<li>Deep Learning vs Machine Learning: Key Differences.</li>
+<li>Why is Deep Learning Famous Today?</li>
+</ul>
+<hr>
+<h2 id="why-deep-learning-is-changing-the-world-a-beginners-guide-to-ai-and-neural-networks">Why Deep Learning Is Changing the World: A Beginner’s Guide to AI and Neural Networks<a hidden class="anchor" aria-hidden="true" href="#why-deep-learning-is-changing-the-world-a-beginners-guide-to-ai-and-neural-networks">#</a></h2>
+<hr>
+<p><img alt="Deep Learning Illustration" loading="lazy" src="/images/posts/figure-1.png"></p>
+<h2 id="understanding-ai-machine-learning-and-deep-learning">Understanding AI, Machine Learning, and Deep Learning<a hidden class="anchor" aria-hidden="true" href="#understanding-ai-machine-learning-and-deep-learning">#</a></h2>
+<p>Artificial Intelligence (AI) is the big umbrella term under which everything else falls. It’s all about making machines smart — just like humans. We’ve been working on AI for over 100 years, and while we’ve made some progress, there’s still a lot more to achieve. One important area of AI that’s already developed is machine learning (ML).</p>
+<h2 id="what-is-machine-learning">What is Machine Learning?<a hidden class="anchor" aria-hidden="true" href="#what-is-machine-learning">#</a></h2>
+<p>Machine learning is a sub field of AI. The goal of ML is to help machines learn from data. If you have data with inputs (like a question) and outputs (like an answer), machine learning’s job is to figure out the relationship between the input and output. In simple terms, it predicts the output based on the input by finding patterns in the data.</p>
+<p>Most machine learning methods are based on statistics. They use mathematical algorithms to identify and map these relationships. For example, if you give ML a lot of data about house sizes (input) and their prices (output), it can predict the price of a new house based on its size.</p>
+<h2 id="what-is-deep-learning">What is Deep Learning?<a hidden class="anchor" aria-hidden="true" href="#what-is-deep-learning">#</a></h2>
+<p>Deep Learning is a subset of Machine Learning, but it’s more advanced. While Machine Learning algorithms mostly rely on statistical methods to find patterns in the data, Deep Learning uses something called a neural network, which is inspired by the human brain.</p>
+<p>Neural networks in Deep Learning consist of layers of interconnected nodes (also known as “neurons”), which help the understand more complex patterns. This structure allows Deep Learning models to learn from large amounts of data in a way that is much closer to how the human brain works.</p>
+<p>The main difference is that Deep Learning goes beyond traditional statistical methods and uses logical structures (neural networks) to solve problems, making it more powerful and capable of handling complex tasks like image recognition, speech processing, and more.</p>
+<ul>
+<li>AI is the broad field of making machines intelligent.</li>
+<li>Machine Learning is a part of AI that focuses on teaching machines to learn from data.</li>
+<li>Deep Learning is a more advanced form of Machine Learning that uses neural networks inspired by the human brain.</li>
+</ul>
+<p><img alt="Example of Neural Network (ANN)" loading="lazy" src="/images/posts/example-ann.png"></p>
+<h2 id="what-is-an-artificial-neural-network-ann">What is an Artificial Neural Network (ANN)?<a hidden class="anchor" aria-hidden="true" href="#what-is-an-artificial-neural-network-ann">#</a></h2>
+<p>An Artificial Neural Network (ANN) is a type of logical structure used in deep learning. It’s made up of small units called perceptrons, which are the building blocks of the network. These perceptrons are connected to each other by arrows, called weights, which help the network process information.</p>
+<p>The structure of an ANN is organized into layers:</p>
+<ul>
+<li><strong>Input Layer</strong>: This is where we feed in the data, like numbers or images.</li>
+<li><strong>Output Layer</strong>: This is where we get the final result or prediction.</li>
+<li><strong>Hidden Layers</strong>: These are layers in between the input and output. Hidden layers process the data and help the network learn complex patterns.</li>
+</ul>
+<p>The more hidden layers an ANN has, the deeper the network becomes — this is where the term “deep learning” comes from! A deep neural network with many hidden layers can solve more complex problems by identifying intricate patterns in data.</p>
+<h2 id="types-of-neural-networks">Types of Neural Networks:<a hidden class="anchor" aria-hidden="true" href="#types-of-neural-networks">#</a></h2>
+<p>There are several types of neural networks, each designed for specific tasks:</p>
+<ul>
+<li><strong>ANN (Artificial Neural Network)</strong>: The most basic type of neural network, used for general tasks.</li>
+<li><strong>CNN (Convolutional Neural Network)</strong>: Specially designed for working with images, such as recognizing objects in pictures.</li>
+<li><strong>RNN (Recurrent Neural Network)</strong>: Used for sequential data like text or speech, making it great for language translation or voice recognition.</li>
+<li><strong>GAN (Generative Adversarial Network)</strong>: A unique type of network that can create new data, such as generating realistic images or writing text.</li>
+</ul>
+<h2 id="why-is-deep-learning-so-popular">Why is Deep Learning So Popular?<a hidden class="anchor" aria-hidden="true" href="#why-is-deep-learning-so-popular">#</a></h2>
+<p>Deep learning has become incredibly famous in recent years, and there are two main reasons for this:</p>
+<h3 id="wide-applicability">Wide Applicability<a hidden class="anchor" aria-hidden="true" href="#wide-applicability">#</a></h3>
+<p>Deep learning can be used in almost every field. Computer vision (like recognizing objects in images), speech recognition (like voice assistants), natural language processing (NLP, which includes chat bots and language translation), and many other areas. Its versatility makes it a go-to technology for solving a wide range of complex problems.</p>
+<h3 id="outstanding-performance">Outstanding Performance<a hidden class="anchor" aria-hidden="true" href="#outstanding-performance">#</a></h3>
+<p>Deep learning delivers incredible results in these fields, often outperforming traditional methods. In fact, many deep learning models achieve state-of-the-art performance, meaning they set new benchmarks for accuracy and efficiency.</p>
+<p>What’s even more exciting is that in some cases, deep learning models have even surpassed human-level performance. For example, they can detect patterns in data that humans might miss or process information much faster and more consistently.</p>
+<p>These two reasons — its ability to work in so many areas and its top-notch performance — are why deep learning is gaining so much attention and success today.</p>
+<h2 id="deep-learning-vs-machine-learning-key-differences">Deep Learning vs Machine Learning: Key Differences<a hidden class="anchor" aria-hidden="true" href="#deep-learning-vs-machine-learning-key-differences">#</a></h2>
+<p>Deep learning and machine learning are closely related but have significant differences. Let’s explore these differences in detail:</p>
+<h3 id="1-data-dependency">1. Data Dependency<a hidden class="anchor" aria-hidden="true" href="#1-data-dependency">#</a></h3>
+<ul>
+<li><strong>Machine Learning</strong>: Works well with smaller datasets.</li>
+<li><strong>Deep Learning</strong>: Requires a lot of data to perform effectively. Deep learning models are often called “data-hungry” because they need vast amounts of labelled data to learn complex patterns.</li>
+</ul>
+<h3 id="2-hardware-dependency">2. Hardware Dependency<a hidden class="anchor" aria-hidden="true" href="#2-hardware-dependency">#</a></h3>
+<ul>
+<li><strong>Machine Learning</strong>: Training machine learning models can be done on a local CPU and doesn’t require high-end hardware.</li>
+<li><strong>Deep Learning</strong>: Deep learning involves complex matrix computations, which demand powerful GPUs or TPUs (specialized hardware). Using only a CPU for deep learning makes training very slow, and GPUs with more memory can be expensive.</li>
+</ul>
+<h3 id="3-training-and-prediction-time">3. Training and Prediction Time<a hidden class="anchor" aria-hidden="true" href="#3-training-and-prediction-time">#</a></h3>
+<ul>
+<li><strong>Machine Learning</strong>: Training time is generally shorter, but for some algorithms like KNN (K-Nearest Neighbours), prediction time can be slow.</li>
+<li><strong>Deep Learning</strong>: Training time is much longer due to the complexity of the model, but once trained, deep learning models are very fast at making predictions.</li>
+</ul>
+<h3 id="4-feature-selection">4. Feature Selection<a hidden class="anchor" aria-hidden="true" href="#4-feature-selection">#</a></h3>
+<ul>
+<li><strong>Machine Learning</strong>: Features must be manually selected and engineered by humans to improve the model’s performance.</li>
+<li><strong>Deep Learning</strong>: Automatically extracts relevant features from raw data during training. This eliminates the need for manual feature engineering, which is a big advantage.</li>
+</ul>
+<h3 id="5-interpretability">5. Interpretability<a hidden class="anchor" aria-hidden="true" href="#5-interpretability">#</a></h3>
+<ul>
+<li><strong>Machine Learning</strong>: High interpretability. For example, in algorithms like logistic regression, weights assigned to features show their importance. This helps us understand which features are significant.</li>
+<li><strong>Deep Learning</strong>: Low interpretability. Deep learning models, especially neural networks, function like a “black box.” For example, if a neural network classifies an image as a dog, we don’t know exactly how it arrived at that decision or which features it focused on during training.</li>
+</ul>
+<h2 id="why-is-deep-learning-famous-today">Why is Deep Learning Famous Today?<a hidden class="anchor" aria-hidden="true" href="#why-is-deep-learning-famous-today">#</a></h2>
+<p>Deep learning has been around for decades, starting in the 1960s, with early concepts introduced by pioneers like Alan Turing. However, it became a major breakthrough around 2012. So, why did deep learning suddenly gain so much popularity? The answer lies in five key factors:</p>
+<h3 id="1-datasets">1. Datasets<a hidden class="anchor" aria-hidden="true" href="#1-datasets">#</a></h3>
+<p>Deep learning relies on large amounts of data. The more data you have, the better your deep learning model can learn patterns and make accurate predictions.</p>
+<p>Two major revolutions around 2010 contributed to the rise of deep learning:</p>
+<ul>
+<li><strong>The Smartphone Revolution</strong>: As smartphones became common, people started generating massive amounts of data — photos, videos, texts, etc.</li>
+<li><strong>The Internet Revolution</strong>: Affordable internet allowed social media platforms like Instagram, TikTok, and Snapchat to flourish, resulting in even more data creation.</li>
+</ul>
+<p>While we were generating huge amounts of data, most of it was unlabelled (e.g., an Instagram photo of a dog doesn’t say “dog”). Companies like Google, Microsoft, and Meta invested heavily in converting this unlabelled data into labelled datasets for research. These publicly available datasets, like ImageNet, helped researchers train and test deep learning models, fueling its growth.</p>
+<h3 id="2-hardware">2. Hardware<a hidden class="anchor" aria-hidden="true" href="#2-hardware">#</a></h3>
+<p>Deep learning requires significant computational power to handle large datasets and perform complex mathematical operations, like matrix multiplication. Advances in hardware have made this possible:</p>
+<ul>
+<li><strong>GPUs (Graphics Processing Units)</strong>: GPUs can process multiple tasks simultaneously, making them ideal for deep learning. NVIDIA revolutionized this field by introducing CUDA, a programming language for GPUs, which skyrocketed the company’s popularity.</li>
+<li><strong>Custom Chips</strong>:
+<ul>
+<li><strong>TPU (Tensor Processing Unit)</strong>: A specialized chip developed by Google for training deep learning models, available on platforms like Google Colab.</li>
+<li><strong>Edge TPU</strong>: Used for running deep learning models on small devices like drones and smartwatches.</li>
+<li><strong>NPU (Neural Processing Unit)</strong>: Found in smartphones to power AI applications like photo editing and voice assistants.</li>
+</ul>
+</li>
+</ul>
+<p>Over time, hardware has become more affordable and powerful, further accelerating the adoption of deep learning.</p>
+<h3 id="3-algorithms">3. Algorithms<a hidden class="anchor" aria-hidden="true" href="#3-algorithms">#</a></h3>
+<p>Researchers have developed more efficient algorithms and techniques to train deep learning models faster and more accurately, such as:</p>
+<ul>
+<li>Better weight initialization methods</li>
+<li>New activation functions like ReLU (Rectified Linear Unit)</li>
+<li>Optimizers like Adam and RMSProp</li>
+<li>Regularization methods like dropout and batch normalization</li>
+</ul>
+<h3 id="4-open-source-libraries">4. Open Source Libraries<a hidden class="anchor" aria-hidden="true" href="#4-open-source-libraries">#</a></h3>
+<p>Deep learning became accessible due to open-source libraries like TensorFlow, PyTorch, and Keras. These frameworks provide easy-to-use tools and pre-built models, enabling more people to experiment with deep learning without needing to build everything from scratch.</p>
+<h3 id="5-community-and-collaboration">5. Community and Collaboration<a hidden class="anchor" aria-hidden="true" href="#5-community-and-collaboration">#</a></h3>
+<p>The open-source nature and growing community of deep learning researchers, engineers, and enthusiasts have fostered rapid advancements. Sharing code, datasets, and research papers accelerates innovation and learning.</p>
+<hr>
+<p>I hope this blog post helps you understand why deep learning is a game changer and inspires you to explore this fascinating field.</p>
+<p>Thanks for reading, and see you next time!</p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/ai/">AI</a></li>
+      <li><a href="http://localhost:1313/tags/deep-learning/">Deep Learning</a></li>
+      <li><a href="http://localhost:1313/tags/neural-networks/">Neural Networks</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">My Portfolio</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
