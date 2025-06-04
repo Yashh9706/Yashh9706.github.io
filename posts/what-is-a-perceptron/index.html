@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Understanding the Perceptron: A Deep Learning Foundation | My Portfolio</title>
+<meta name="keywords" content="">
+<meta name="description" content="Hello, everyone!
+My name is Yash, and welcome to my new blog! In this blog, we will explore what a perceptron is, how it works, and why it is important in deep learning. We’ll break down its structure, understand its geometric interpretation, and see how it acts as a decision boundary. We’ll also discuss its limitations and how modern deep learning methods overcome them. Finally, we’ll implement a perceptron using code to solidify our understanding.">
+<meta name="author" content="Yash Dave">
+<link rel="canonical" href="https://Yashh9706.github.io/posts/what-is-a-perceptron/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://Yashh9706.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://Yashh9706.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://Yashh9706.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://Yashh9706.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://Yashh9706.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://Yashh9706.github.io/posts/what-is-a-perceptron/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://Yashh9706.github.io/posts/what-is-a-perceptron/">
+  <meta property="og:site_name" content="My Portfolio">
+  <meta property="og:title" content="Understanding the Perceptron: A Deep Learning Foundation">
+  <meta property="og:description" content="Hello, everyone!
+My name is Yash, and welcome to my new blog! In this blog, we will explore what a perceptron is, how it works, and why it is important in deep learning. We’ll break down its structure, understand its geometric interpretation, and see how it acts as a decision boundary. We’ll also discuss its limitations and how modern deep learning methods overcome them. Finally, we’ll implement a perceptron using code to solidify our understanding.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-06-04T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-06-04T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Understanding the Perceptron: A Deep Learning Foundation">
+<meta name="twitter:description" content="Hello, everyone!
+My name is Yash, and welcome to my new blog! In this blog, we will explore what a perceptron is, how it works, and why it is important in deep learning. We’ll break down its structure, understand its geometric interpretation, and see how it acts as a decision boundary. We’ll also discuss its limitations and how modern deep learning methods overcome them. Finally, we’ll implement a perceptron using code to solidify our understanding.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://Yashh9706.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Understanding the Perceptron: A Deep Learning Foundation",
+      "item": "https://Yashh9706.github.io/posts/what-is-a-perceptron/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Understanding the Perceptron: A Deep Learning Foundation",
+  "name": "Understanding the Perceptron: A Deep Learning Foundation",
+  "description": "Hello, everyone!\nMy name is Yash, and welcome to my new blog! In this blog, we will explore what a perceptron is, how it works, and why it is important in deep learning. We’ll break down its structure, understand its geometric interpretation, and see how it acts as a decision boundary. We’ll also discuss its limitations and how modern deep learning methods overcome them. Finally, we’ll implement a perceptron using code to solidify our understanding.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "Hello, everyone!\nMy name is Yash, and welcome to my new blog! In this blog, we will explore what a perceptron is, how it works, and why it is important in deep learning. We’ll break down its structure, understand its geometric interpretation, and see how it acts as a decision boundary. We’ll also discuss its limitations and how modern deep learning methods overcome them. Finally, we’ll implement a perceptron using code to solidify our understanding.\nBy the end of this blog, you’ll have a strong grasp of perceptrons and their role in machine learning. Let’s dive in!\nWhat is a Perceptron? A Perceptron is a simple algorithm used in supervised machine learning — just like Decision Trees, SVM, and Logistic Regression. However, what makes it special is that it is also the building block of deep learning.\nThink of a perceptron as a basic unit of a neural network. It takes some input, applies a mathematical calculation, and then gives an output. This process helps a model learn to classify data, making it useful for tasks like recognizing patterns and making predictions.\nBecause of its design, the perceptron plays a key role in the foundation of deep learning models, making them capable of handling more complex problems over time.\nNow the question is how perceptron looks like? Structure of a Perceptron A perceptron is made up of several important components that help it process information and make decisions. Here’s a simple breakdown of how it works:\nInputs (𝑥₁, 𝑥₂, …, 𝑥ₙ) — These are the features or data points that the perceptron receives. For example, if we’re classifying an image, the inputs could be pixel values. Weights (𝑤₁, 𝑤₂, …, 𝑤ₙ) — Each input has a weight assigned to it. Weights determine how important each input is when making a decision. The perceptron learns these weights over time to improve its accuracy. Summation Function (∑ 𝑤𝑖 𝑥𝑖) — The perceptron calculates a weighted sum of all the inputs. This means it multiplies each input by its weight and then adds them together. Bias (𝑏) — The bias is an extra value added to the sum to help adjust the output. It makes sure the perceptron can correctly classify data even when inputs are zero. Activation Function (𝑓) — After summing up the inputs and bias, the result is passed through an activation function. Common activation functions include: Step Function — Outputs either 0 or 1 based on a threshold. Sigmoid — Outputs values between 0 and 1, useful for probability-based predictions. ReLU (Rectified Linear Unit) — Outputs the value directly if it’s positive, otherwise returns 0. Output (𝑦) — The final result or decision made by the perceptron. It could be a classification (e.g., “cat” or “dog”) or a numerical value, depending on the problem. In simple terms, a perceptron takes inputs, applies some math to them, and then makes a decision based on the result. It’s like a tiny brain cell in a neural network, helping machines learn and make predictions!\nWhere:\ny is the output, wᵢ are the weights, xᵢ are the inputs, b is the bias, and f is the activation function. What is a Weighted Sum? The weighted sum is the first step a perceptron uses to process information.\nHere’s how it works: The perceptron receives inputs. These could be numbers representing things like pixel brightness in an image or values in a dataset. Each input has a weight. The weight tells the perceptron how important that input is. The perceptron multiplies each input by its weight, then adds all those results together. This total is called the weighted sum. In simple terms, the perceptron is giving more attention to the inputs with higher weights.\nExample: Imagine you’re trying to decide if someone should get a loan.\nYou have two inputs:\nIncome (x₁ = 50) Credit Score (x₂ = 70) You think income is twice as important as credit score, so you give them weights:\nw₁ = 2 (for income) w₂ = 1 (for credit score) Now, calculate the weighted sum:\n(50 × 2) + (70 × 1) = 100 + 70 = 170\nThe result, 170, is the weighted sum. This number will be used in the next step to decide if the person gets the loan.\nUnderstanding Bias in Large Language Models (LLMs) When we hear the word “bias,” we often think of personal opinions, judgments, or stereotypes. In the context of Large Language Models (LLMs) like ChatGPT, bias means something similar—but it’s more about patterns the model learns from the data it’s trained on.\nLet’s break it down step by step to understand what bias really means in LLMs, why it happens, and what would happen if it wasn’t there at all.\nWhat Is Bias in an LLM? Bias in a language model refers to the repeated ideas, associations, or preferences the model learns from its training data. This data includes a massive amount of text collected from books, websites, social media, news articles, and more. All this text reflects human language—along with all the assumptions, opinions, and cultural norms that come with it.\nSince the model learns by looking at patterns in this data, it naturally picks up on things that appear frequently. Some of these patterns are useful, but others may be unfair or inaccurate. That’s what we refer to as bias.\nHow Does Bias Get into the Model? Imagine teaching a child how to speak by letting them read every book and website ever written. If those sources often say that doctors are men and nurses are women, the child might start believing that’s always true.\nThe same thing happens with LLMs. If the model sees certain ideas or stereotypes repeated many times—like certain jobs linked with certain genders—it will learn those patterns and might repeat them in its answers. It’s not doing this on purpose; it simply reflects what it saw most during training.\nHow the Model Learns from Bias LLMs work by predicting what word should come next in a sentence. They do this by learning what usually follows certain phrases, based on the text they were trained on.\nFor example, if the model often saw the sentence:\n“The CEO gave a speech. He thanked the team.”\nit learns to associate the word “he” with “CEO.” Over time, it might assume that most CEOs are male, because that’s what it saw over and over again. This is how bias becomes part of the model’s behavior—it sees a pattern, learns it, and repeats it.\nWhat If There Were No Bias? It’s tempting to think that a model with no bias would be perfect and fair. But removing all bias isn’t that simple—and it might not even be helpful.\nIf we removed all bias:\nThe model could become too neutral or vague. For example, instead of giving clear, confident answers, it might respond with “It depends” or avoid giving any opinion at all. It might lose helpful patterns too. For instance, polite and respectful language is a kind of bias—one that we want the model to keep. It could struggle to understand real-world context, emotions, or tone. Bias, in small and balanced amounts, helps the model sound more natural, human, and useful. The key is not to remove all bias, but to remove the harmful ones while keeping the useful ones.\nWhy It Matters Bias in LLMs is important because these models are used in education, healthcare, customer service, and everyday conversations. If they repeat harmful stereotypes or give unfair responses, people could be misled or hurt.\nThat’s why developers work hard to reduce harmful bias. They do this by carefully choosing training data, testing the model’s behavior, and adjusting it through fine-tuning and feedback.\nIn Simple Terms Bias in an LLM is like seasoning in food. A little bit makes the result better—it adds flavor and personality. But too much of the wrong kind can ruin the whole experience. We need some bias for the model to sound natural, but we have to be careful about what kind of bias it learns.\nGeometric Intuition of a Perceptron in Deep Learning A Perceptron is the basic building block of a neural network. Understanding it from a geometric perspective makes it easier to see how it works.\nPerceptron as a Line The perceptron follows a simple mathematical equation:\nz = w₁x₁ + w₂x₂ + b\nIf we replace the weights and bias with common algebraic letters:\nw₁ → A w₂ → B b → C x₁ → X x₂ → Y Then, the equation simplifies to:\nAX + BY + C = 0, which represents a straight line in a 2D plane.\nHow Does This Help in Deep Learning? The perceptron creates a decision boundary, which means it draws a line that separates different groups of data points.\nFor example, if we are classifying red dots and blue dots, the perceptron will find the best line that separates them. Any new data point that appears on one side of the line will belong to one category, while data on the other side belongs to another. Role of the Activation Function In a Perceptron, the activation function plays a key role in deciding the output. It determines whether the perceptron should “activate” or stay inactive based on the computed value z.\nHere’s how it works:\nIf AX + BY + C \u003e 0, the perceptron outputs YES (1). If AX + BY + C \u003c 0, the perceptron outputs NO (0). This means that the perceptron splits the space into two regions using a decision boundary (a straight line in 2D). Data points on one side of the line are classified into one category, while data on the other side belongs to a different category.\nThe activation function is what makes the perceptron useful for classification tasks, as it helps separate different groups of data based on patterns. In more complex neural networks, different activation functions (like ReLU or Sigmoid) allow models to learn non-linear relationships and solve even more advanced problems.\nPerceptron as a Binary Classifier Since the perceptron splits the space into two parts, it naturally works as a binary classifier — meaning it can only classify data into two categories. If we add more input variables (more dimensions), the perceptron still creates a dividing boundary, but instead of a line, it could be a plane or a higher-dimensional hyperplane.\nLimitations of a Perceptron The biggest limitation of a perceptron is that it only works well when the data is linearly separable. In simple terms, if the data points can be separated using a straight line, the perceptron can classify them correctly. However, if the data is arranged in a non-linear pattern, the perceptron fails because it can only create a straight decision boundary.\nWhy Does This Happen? A Single Layer Perceptron (SLP) makes decisions based on a linear function:\ny = f(∑ wᵢxᵢ + b)\nThis equation represents a hyperplane — a straight line in 2D, a plane in 3D, and so on. Since the perceptron’s decision-making is based on this linear function, it cannot handle complex patterns where a straight line is not enough to separate different categories.\nHow to Solve This Problem? To handle non-linear data, we need more advanced models like the Multi-Layer Perceptron (MLP). These models:\nHave multiple layers (input layer, hidden layers, and output layer). Use powerful activation functions like ReLU, Sigmoid, and Tanh, which allow the network to learn complex patterns. By stacking multiple perceptrons together and introducing non-linearity, deep learning models can solve much more complex classification problems, such as image recognition, speech processing, and language translation.\nConclusion The Perceptron is the foundation of Neural Networks and plays a crucial role in understanding Deep Learning. It helps classify data by creating a linear decision boundary, but its biggest limitation is that it only works well with linearly separable data.\nTo handle more complex, non-linear problems, we need Multi-Layer Perceptrons (MLP) and advanced activation functions like ReLU, Sigmoid, and Tanh. This is where deep learning takes over, allowing AI models to learn intricate patterns and make smarter decisions.\nI hope this blog helped you understand the Perceptron in a simple way.\n",
+  "wordCount" : "2028",
+  "inLanguage": "en",
+  "datePublished": "2025-06-04T00:00:00Z",
+  "dateModified": "2025-06-04T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Yash Dave"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://Yashh9706.github.io/posts/what-is-a-perceptron/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "My Portfolio",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://Yashh9706.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://Yashh9706.github.io/" accesskey="h" title="My Portfolio (Alt + H)">My Portfolio</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://Yashh9706.github.io/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Yashh9706.github.io/projects/" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://Yashh9706.github.io/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Understanding the Perceptron: A Deep Learning Foundation
+    </h1>
+    <div class="post-meta"><span title='2025-06-04 00:00:00 +0000 UTC'>June 4, 2025</span>&nbsp;·&nbsp;Yash Dave
+
+</div>
+  </header> 
+  <div class="post-content"><p>Hello, everyone!<br>
+My name is Yash, and welcome to my new blog! In this blog, we will explore what a perceptron is, how it works, and why it is important in deep learning. We’ll break down its structure, understand its geometric interpretation, and see how it acts as a decision boundary. We’ll also discuss its limitations and how modern deep learning methods overcome them. Finally, we’ll implement a perceptron using code to solidify our understanding.</p>
+<p>By the end of this blog, you’ll have a strong grasp of perceptrons and their role in machine learning. Let’s dive in!</p>
+<h2 id="what-is-a-perceptron">What is a Perceptron?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-perceptron">#</a></h2>
+<p>A Perceptron is a simple algorithm used in supervised machine learning — just like Decision Trees, SVM, and Logistic Regression. However, what makes it special is that it is also the building block of deep learning.</p>
+<p>Think of a perceptron as a basic unit of a neural network. It takes some input, applies a mathematical calculation, and then gives an output. This process helps a model learn to classify data, making it useful for tasks like recognizing patterns and making predictions.</p>
+<p>Because of its design, the perceptron plays a key role in the foundation of deep learning models, making them capable of handling more complex problems over time.</p>
+<h3 id="now-the-question-is-how-perceptron-looks-like">Now the question is how perceptron looks like?<a hidden class="anchor" aria-hidden="true" href="#now-the-question-is-how-perceptron-looks-like">#</a></h3>
+<p><img alt="Perceptron Structure" loading="lazy" src="/images/posts/nodeNeural.jpg"></p>
+<h2 id="structure-of-a-perceptron">Structure of a Perceptron<a hidden class="anchor" aria-hidden="true" href="#structure-of-a-perceptron">#</a></h2>
+<p>A perceptron is made up of several important components that help it process information and make decisions. Here’s a simple breakdown of how it works:</p>
+<ul>
+<li><strong>Inputs (𝑥₁, 𝑥₂, …, 𝑥ₙ)</strong> — These are the features or data points that the perceptron receives. For example, if we’re classifying an image, the inputs could be pixel values.</li>
+<li><strong>Weights (𝑤₁, 𝑤₂, …, 𝑤ₙ)</strong> — Each input has a weight assigned to it. Weights determine how important each input is when making a decision. The perceptron learns these weights over time to improve its accuracy.</li>
+<li><strong>Summation Function (∑ 𝑤𝑖 𝑥𝑖)</strong> — The perceptron calculates a weighted sum of all the inputs. This means it multiplies each input by its weight and then adds them together.</li>
+<li><strong>Bias (𝑏)</strong> — The bias is an extra value added to the sum to help adjust the output. It makes sure the perceptron can correctly classify data even when inputs are zero.</li>
+<li><strong>Activation Function (𝑓)</strong> — After summing up the inputs and bias, the result is passed through an activation function. Common activation functions include:
+<ul>
+<li><strong>Step Function</strong> — Outputs either 0 or 1 based on a threshold.</li>
+<li><strong>Sigmoid</strong> — Outputs values between 0 and 1, useful for probability-based predictions.</li>
+<li><strong>ReLU (Rectified Linear Unit)</strong> — Outputs the value directly if it’s positive, otherwise returns 0.</li>
+</ul>
+</li>
+<li><strong>Output (𝑦)</strong> — The final result or decision made by the perceptron. It could be a classification (e.g., “cat” or “dog”) or a numerical value, depending on the problem.</li>
+</ul>
+<p>In simple terms, a perceptron takes inputs, applies some math to them, and then makes a decision based on the result. It’s like a tiny brain cell in a neural network, helping machines learn and make predictions!</p>
+<p>Where:</p>
+<ul>
+<li><strong>y</strong> is the output,</li>
+<li><strong>wᵢ</strong> are the weights,</li>
+<li><strong>xᵢ</strong> are the inputs,</li>
+<li><strong>b</strong> is the bias, and</li>
+<li><strong>f</strong> is the activation function.</li>
+</ul>
+<h2 id="what-is-a-weighted-sum">What is a Weighted Sum?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-weighted-sum">#</a></h2>
+<p>The weighted sum is the first step a perceptron uses to process information.</p>
+<h3 id="heres-how-it-works">Here’s how it works:<a hidden class="anchor" aria-hidden="true" href="#heres-how-it-works">#</a></h3>
+<ul>
+<li>The perceptron receives inputs. These could be numbers representing things like pixel brightness in an image or values in a dataset.</li>
+<li>Each input has a weight. The weight tells the perceptron how important that input is.</li>
+<li>The perceptron multiplies each input by its weight, then adds all those results together. This total is called the weighted sum.</li>
+</ul>
+<p>In simple terms, the perceptron is giving more attention to the inputs with higher weights.</p>
+<h3 id="example">Example:<a hidden class="anchor" aria-hidden="true" href="#example">#</a></h3>
+<p>Imagine you’re trying to decide if someone should get a loan.<br>
+You have two inputs:</p>
+<ul>
+<li>Income (x₁ = 50)</li>
+<li>Credit Score (x₂ = 70)</li>
+</ul>
+<p>You think income is twice as important as credit score, so you give them weights:</p>
+<ul>
+<li>w₁ = 2 (for income)</li>
+<li>w₂ = 1 (for credit score)</li>
+</ul>
+<p>Now, calculate the weighted sum:<br>
+(50 × 2) + (70 × 1) = 100 + 70 = <strong>170</strong></p>
+<p>The result, <strong>170</strong>, is the weighted sum. This number will be used in the next step to decide if the person gets the loan.</p>
+<h2 id="understanding-bias-in-large-language-models-llms">Understanding Bias in Large Language Models (LLMs)<a hidden class="anchor" aria-hidden="true" href="#understanding-bias-in-large-language-models-llms">#</a></h2>
+<p>When we hear the word “bias,” we often think of personal opinions, judgments, or stereotypes. In the context of Large Language Models (LLMs) like ChatGPT, bias means something similar—but it&rsquo;s more about patterns the model learns from the data it&rsquo;s trained on.</p>
+<p>Let’s break it down step by step to understand what bias really means in LLMs, why it happens, and what would happen if it wasn’t there at all.</p>
+<h3 id="what-is-bias-in-an-llm">What Is Bias in an LLM?<a hidden class="anchor" aria-hidden="true" href="#what-is-bias-in-an-llm">#</a></h3>
+<p>Bias in a language model refers to the repeated ideas, associations, or preferences the model learns from its training data. This data includes a massive amount of text collected from books, websites, social media, news articles, and more. All this text reflects human language—along with all the assumptions, opinions, and cultural norms that come with it.</p>
+<p>Since the model learns by looking at patterns in this data, it naturally picks up on things that appear frequently. Some of these patterns are useful, but others may be unfair or inaccurate. That’s what we refer to as bias.</p>
+<h3 id="how-does-bias-get-into-the-model">How Does Bias Get into the Model?<a hidden class="anchor" aria-hidden="true" href="#how-does-bias-get-into-the-model">#</a></h3>
+<p>Imagine teaching a child how to speak by letting them read every book and website ever written. If those sources often say that doctors are men and nurses are women, the child might start believing that’s always true.</p>
+<p>The same thing happens with LLMs. If the model sees certain ideas or stereotypes repeated many times—like certain jobs linked with certain genders—it will learn those patterns and might repeat them in its answers. It’s not doing this on purpose; it simply reflects what it saw most during training.</p>
+<h3 id="how-the-model-learns-from-bias">How the Model Learns from Bias<a hidden class="anchor" aria-hidden="true" href="#how-the-model-learns-from-bias">#</a></h3>
+<p>LLMs work by predicting what word should come next in a sentence. They do this by learning what usually follows certain phrases, based on the text they were trained on.</p>
+<p>For example, if the model often saw the sentence:</p>
+<blockquote>
+<p>“The CEO gave a speech. He thanked the team.”</p></blockquote>
+<p>it learns to associate the word “he” with “CEO.” Over time, it might assume that most CEOs are male, because that’s what it saw over and over again. This is how bias becomes part of the model’s behavior—it sees a pattern, learns it, and repeats it.</p>
+<h3 id="what-if-there-were-no-bias">What If There Were No Bias?<a hidden class="anchor" aria-hidden="true" href="#what-if-there-were-no-bias">#</a></h3>
+<p>It’s tempting to think that a model with no bias would be perfect and fair. But removing all bias isn’t that simple—and it might not even be helpful.</p>
+<p>If we removed all bias:</p>
+<ul>
+<li>The model could become too neutral or vague. For example, instead of giving clear, confident answers, it might respond with “It depends” or avoid giving any opinion at all.</li>
+<li>It might lose helpful patterns too. For instance, polite and respectful language is a kind of bias—one that we want the model to keep.</li>
+<li>It could struggle to understand real-world context, emotions, or tone.</li>
+</ul>
+<p>Bias, in small and balanced amounts, helps the model sound more natural, human, and useful. The key is not to remove all bias, but to remove the harmful ones while keeping the useful ones.</p>
+<h3 id="why-it-matters">Why It Matters<a hidden class="anchor" aria-hidden="true" href="#why-it-matters">#</a></h3>
+<p>Bias in LLMs is important because these models are used in education, healthcare, customer service, and everyday conversations. If they repeat harmful stereotypes or give unfair responses, people could be misled or hurt.</p>
+<p>That’s why developers work hard to reduce harmful bias. They do this by carefully choosing training data, testing the model&rsquo;s behavior, and adjusting it through fine-tuning and feedback.</p>
+<h3 id="in-simple-terms">In Simple Terms<a hidden class="anchor" aria-hidden="true" href="#in-simple-terms">#</a></h3>
+<p>Bias in an LLM is like seasoning in food. A little bit makes the result better—it adds flavor and personality. But too much of the wrong kind can ruin the whole experience. We need some bias for the model to sound natural, but we have to be careful about what kind of bias it learns.</p>
+<h2 id="geometric-intuition-of-a-perceptron-in-deep-learning">Geometric Intuition of a Perceptron in Deep Learning<a hidden class="anchor" aria-hidden="true" href="#geometric-intuition-of-a-perceptron-in-deep-learning">#</a></h2>
+<p>A Perceptron is the basic building block of a neural network. Understanding it from a geometric perspective makes it easier to see how it works.</p>
+<h3 id="perceptron-as-a-line">Perceptron as a Line<a hidden class="anchor" aria-hidden="true" href="#perceptron-as-a-line">#</a></h3>
+<p>The perceptron follows a simple mathematical equation:<br>
+<strong>z = w₁x₁ + w₂x₂ + b</strong></p>
+<p>If we replace the weights and bias with common algebraic letters:</p>
+<ul>
+<li>w₁ → A</li>
+<li>w₂ → B</li>
+<li>b → C</li>
+<li>x₁ → X</li>
+<li>x₂ → Y</li>
+</ul>
+<p>Then, the equation simplifies to:<br>
+<strong>AX + BY + C = 0</strong>, which represents a straight line in a 2D plane.</p>
+<h3 id="how-does-this-help-in-deep-learning">How Does This Help in Deep Learning?<a hidden class="anchor" aria-hidden="true" href="#how-does-this-help-in-deep-learning">#</a></h3>
+<p>The perceptron creates a <strong>decision boundary</strong>, which means it draws a line that separates different groups of data points.</p>
+<ul>
+<li>For example, if we are classifying red dots and blue dots, the perceptron will find the best line that separates them.</li>
+<li>Any new data point that appears on one side of the line will belong to one category, while data on the other side belongs to another.</li>
+</ul>
+<h3 id="role-of-the-activation-function">Role of the Activation Function<a hidden class="anchor" aria-hidden="true" href="#role-of-the-activation-function">#</a></h3>
+<p>In a Perceptron, the activation function plays a key role in deciding the output. It determines whether the perceptron should “activate” or stay inactive based on the computed value z.</p>
+<p>Here’s how it works:</p>
+<ul>
+<li>If <strong>AX + BY + C &gt; 0</strong>, the perceptron outputs <strong>YES (1)</strong>.</li>
+<li>If <strong>AX + BY + C &lt; 0</strong>, the perceptron outputs <strong>NO (0)</strong>.</li>
+</ul>
+<p>This means that the perceptron splits the space into two regions using a decision boundary (a straight line in 2D). Data points on one side of the line are classified into one category, while data on the other side belongs to a different category.</p>
+<p>The activation function is what makes the perceptron useful for classification tasks, as it helps separate different groups of data based on patterns. In more complex neural networks, different activation functions (like ReLU or Sigmoid) allow models to learn non-linear relationships and solve even more advanced problems.</p>
+<h3 id="perceptron-as-a-binary-classifier">Perceptron as a Binary Classifier<a hidden class="anchor" aria-hidden="true" href="#perceptron-as-a-binary-classifier">#</a></h3>
+<p>Since the perceptron splits the space into two parts, it naturally works as a <strong>binary classifier</strong> — meaning it can only classify data into two categories. If we add more input variables (more dimensions), the perceptron still creates a dividing boundary, but instead of a line, it could be a plane or a higher-dimensional hyperplane.</p>
+<h2 id="limitations-of-a-perceptron">Limitations of a Perceptron<a hidden class="anchor" aria-hidden="true" href="#limitations-of-a-perceptron">#</a></h2>
+<p>The biggest limitation of a perceptron is that it only works well when the data is <strong>linearly separable</strong>. In simple terms, if the data points can be separated using a straight line, the perceptron can classify them correctly. However, if the data is arranged in a non-linear pattern, the perceptron fails because it can only create a straight decision boundary.</p>
+<h3 id="why-does-this-happen">Why Does This Happen?<a hidden class="anchor" aria-hidden="true" href="#why-does-this-happen">#</a></h3>
+<p>A <strong>Single Layer Perceptron (SLP)</strong> makes decisions based on a linear function:</p>
+<p><strong>y = f(∑ wᵢxᵢ + b)</strong></p>
+<p>This equation represents a hyperplane — a straight line in 2D, a plane in 3D, and so on. Since the perceptron’s decision-making is based on this linear function, it cannot handle complex patterns where a straight line is not enough to separate different categories.</p>
+<h3 id="how-to-solve-this-problem">How to Solve This Problem?<a hidden class="anchor" aria-hidden="true" href="#how-to-solve-this-problem">#</a></h3>
+<p>To handle non-linear data, we need more advanced models like the <strong>Multi-Layer Perceptron (MLP)</strong>. These models:</p>
+<ul>
+<li>Have multiple layers (input layer, hidden layers, and output layer).</li>
+<li>Use powerful activation functions like ReLU, Sigmoid, and Tanh, which allow the network to learn complex patterns.</li>
+</ul>
+<p>By stacking multiple perceptrons together and introducing non-linearity, deep learning models can solve much more complex classification problems, such as image recognition, speech processing, and language translation.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>The Perceptron is the foundation of Neural Networks and plays a crucial role in understanding Deep Learning. It helps classify data by creating a linear decision boundary, but its biggest limitation is that it only works well with linearly separable data.</p>
+<p>To handle more complex, non-linear problems, we need <strong>Multi-Layer Perceptrons (MLP)</strong> and advanced activation functions like ReLU, Sigmoid, and Tanh. This is where deep learning takes over, allowing AI models to learn intricate patterns and make smarter decisions.</p>
+<p>I hope this blog helped you understand the Perceptron in a simple way.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://Yashh9706.github.io/">My Portfolio</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
