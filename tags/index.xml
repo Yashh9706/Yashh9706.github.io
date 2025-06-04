@@ -6,27 +6,34 @@
     <description>Recent content in Tags on My Portfolio</description>
     <generator>Hugo -- 0.147.7</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 31 May 2025 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://Yashh9706.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>AI</title>
-      <link>https://Yashh9706.github.io/tags/ai/</link>
-      <pubDate>Sat, 31 May 2025 12:00:00 +0000</pubDate>
-      <guid>https://Yashh9706.github.io/tags/ai/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Deep Learning</title>
       <link>https://Yashh9706.github.io/tags/deep-learning/</link>
-      <pubDate>Sat, 31 May 2025 12:00:00 +0000</pubDate>
+      <pubDate>Wed, 04 Jun 2025 00:00:00 +0000</pubDate>
       <guid>https://Yashh9706.github.io/tags/deep-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Neural Networks</title>
       <link>https://Yashh9706.github.io/tags/neural-networks/</link>
-      <pubDate>Sat, 31 May 2025 12:00:00 +0000</pubDate>
+      <pubDate>Wed, 04 Jun 2025 00:00:00 +0000</pubDate>
       <guid>https://Yashh9706.github.io/tags/neural-networks/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Perceptron</title>
+      <link>https://Yashh9706.github.io/tags/perceptron/</link>
+      <pubDate>Wed, 04 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://Yashh9706.github.io/tags/perceptron/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AI</title>
+      <link>https://Yashh9706.github.io/tags/ai/</link>
+      <pubDate>Sat, 31 May 2025 12:00:00 +0000</pubDate>
+      <guid>https://Yashh9706.github.io/tags/ai/</guid>
       <description></description>
     </item>
   </channel>
