@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Perceptron Loss Function Explained: Gradient Descent and Binary Classification Guide | My Portfolio</title>
+<meta name="keywords" content="Perceptron, Loss Function, Gradient Descent, Machine Learning">
+<meta name="description" content="Understanding the Perceptron Loss Function and Gradient Descent
+Introduction
+Hello, everyone!
+My name is Yash, and welcome to my new blog! In this blog, we will explore what is Loss function. In machine learning, one of the fundamental goals is to create models that can learn patterns from data and make predictions. A common type of prediction problem is classification — for example, predicting whether an employee will get promoted based on features such as age and years of experience.">
+<meta name="author" content="Yash Dave">
+<link rel="canonical" href="http://localhost:1313/posts/test/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.8fe10233a706bc87f2e08b3cf97b8bd4c0a80f10675a143675d59212121037c0.css" integrity="sha256-j&#43;ECM6cGvIfy4Is8&#43;XuL1MCoDxBnWhQ2ddWSEhIQN8A=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/test/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="My Portfolio (Alt + H)">My Portfolio</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/projects/" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Perceptron Loss Function Explained: Gradient Descent and Binary Classification Guide
+    </h1>
+    <div class="post-meta"><span title='2025-06-13 00:00:00 +0000 UTC'>June 13, 2025</span>&nbsp;·&nbsp;Yash Dave
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="understanding-the-perceptron-loss-function-and-gradient-descent">Understanding the Perceptron Loss Function and Gradient Descent<a hidden class="anchor" aria-hidden="true" href="#understanding-the-perceptron-loss-function-and-gradient-descent">#</a></h1>
+<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Hello, everyone!<br>
+My name is Yash, and welcome to my new blog! In this blog, we will explore what is Loss function. In machine learning, one of the fundamental goals is to create models that can learn patterns from data and make predictions. A common type of prediction problem is classification — for example, predicting whether an employee will get promoted based on features such as age and years of experience.</p>
+<p>One of the simplest models used for classification is the Perceptron. But how does the perceptron know whether it is making good predictions? And how does it improve its predictions over time?</p>
+<p>To answer these questions, this blog will cover:</p>
+<ul>
+<li>What the perceptron model is</li>
+<li>What a loss function is</li>
+<li>The loss function used by the perceptron in scikit-learn</li>
+<li>How gradient descent helps the model learn</li>
+</ul>
+<p>Let’s begin by understanding the perceptron.</p>
+<h2 id="what-is-a-perceptron">What Is a Perceptron?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-perceptron">#</a></h2>
+<p>A perceptron is a basic model used for binary classification. It attempts to find a straight line (or a hyperplane in higher dimensions) that separates data into two groups: one labeled as +1 and the other as -1.</p>
+<p>For example, consider the following dataset:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Age</th>
+          <th>Experience</th>
+          <th>Promoted</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>7</td>
+          <td>8</td>
+          <td>+1</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>8</td>
+          <td>-1</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>2</td>
+          <td>+1</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>-1</td>
+      </tr>
+  </tbody>
+</table>
+<p>We want to find a line that separates the promoted (+1) and not promoted (-1) cases. The perceptron does this using a linear equation.</p>
+<h2 id="the-equation-of-the-perceptron-line">The Equation of the Perceptron Line<a hidden class="anchor" aria-hidden="true" href="#the-equation-of-the-perceptron-line">#</a></h2>
+<p>The perceptron makes predictions using the following equation:
+$$
+f(x) = w_1 x_1 + w_2 x_2 + b
+$$</p>
+<p>Where:</p>
+<ul>
+<li><code>x₁</code> and <code>x₂</code> are the input features (such as age and experience),</li>
+<li><code>w₁</code> and <code>w₂</code> are the weights the model learns,</li>
+<li><code>b</code> is the bias, which shifts the line up or down.</li>
+</ul>
+<p>The model makes a prediction based on the sign of <code>f(x)</code>:</p>
+<ul>
+<li>If <code>f(x) ≥ 0</code>, the model predicts +1</li>
+<li>If <code>f(x) &lt; 0</code>, the model predicts -1</li>
+</ul>
+<p>But how do we know if the model is making good predictions? That’s where the loss function comes in.</p>
+<h2 id="what-is-a-loss-function">What Is a Loss Function?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-loss-function">#</a></h2>
+<p>A loss function is a mathematical formula that tells us how far off the model’s predictions are from the actual labels. It returns a number — the loss — that quantifies the model’s errors.</p>
+<ul>
+<li>A high loss means the model is making many or serious mistakes.</li>
+<li>A low loss means the model is doing well.</li>
+</ul>
+<p>The model adjusts its internal parameters (the weights and bias) to minimize this loss, and in doing so, improves its predictions.</p>
+<h2 id="perceptron-loss-function-used-in-scikit-learn">Perceptron Loss Function (Used in scikit-learn)<a hidden class="anchor" aria-hidden="true" href="#perceptron-loss-function-used-in-scikit-learn">#</a></h2>
+<p>The perceptron loss function used in scikit-learn is:</p>
+<p>$$
+L = \sum \max(0, -y_i \cdot f(x_i))
+$$</p>
+<p>Let’s break this down:</p>
+<ul>
+<li><code>yᵢ</code> is the true label (+1 or -1)</li>
+<li><code>f(xᵢ)</code> is the model’s output for input <code>xᵢ</code></li>
+<li><code>-yᵢ * f(xᵢ)</code> checks whether the prediction is correct
+<ul>
+<li>If the prediction is correct, the result is negative or zero</li>
+<li>If the prediction is wrong, the result is positive</li>
+</ul>
+</li>
+<li><code>max(0, -yᵢ * f(xᵢ))</code> makes sure that correct predictions contribute zero to the loss</li>
+</ul>
+<p>This function sums the loss across all data points.</p>
+<h2 id="how-the-perceptron-loss-works--examples">How the Perceptron Loss Works — Examples<a hidden class="anchor" aria-hidden="true" href="#how-the-perceptron-loss-works--examples">#</a></h2>
+<p><strong>Example 1: Correct Prediction</strong></p>
+<p>Suppose:</p>
+<ul>
+<li><code>yᵢ = +1</code></li>
+<li><code>f(xᵢ) = +3</code></li>
+</ul>
+<p>Then:</p>
+<ul>
+<li><code>-yᵢ * f(xᵢ) = -1 * 3 = -3</code></li>
+<li><code>max(0, -3) = 0</code></li>
+</ul>
+<p><strong>Loss is 0</strong> → the model predicted correctly.</p>
+<p><strong>Example 2: Incorrect Prediction</strong></p>
+<p>Suppose:</p>
+<ul>
+<li><code>yᵢ = +1</code></li>
+<li><code>f(xᵢ) = -2</code></li>
+</ul>
+<p>Then:</p>
+<ul>
+<li><code>-yᵢ * f(xᵢ) = -1 * -2 = 2</code></li>
+<li><code>max(0, 2) = 2</code></li>
+</ul>
+<p><strong>Loss is 2</strong> → the model made a mistake.</p>
+<h3 id="summary-table">Summary Table<a hidden class="anchor" aria-hidden="true" href="#summary-table">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>yᵢ</th>
+          <th>f(xᵢ)</th>
+          <th>Prediction</th>
+          <th>Loss</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>+1</td>
+          <td>+3</td>
+          <td>Correct</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>-1</td>
+          <td>-4</td>
+          <td>Correct</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>+1</td>
+          <td>-2</td>
+          <td>Incorrect</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>-1</td>
+          <td>+2</td>
+          <td>Incorrect</td>
+          <td>2</td>
+      </tr>
+  </tbody>
+</table>
+<p>When predictions are correct, the loss is zero. When incorrect, the loss is positive. This helps the model identify which points were misclassified and how badly.</p>
+<h2 id="how-does-the-model-learn">How Does the Model Learn?<a hidden class="anchor" aria-hidden="true" href="#how-does-the-model-learn">#</a></h2>
+<p>The perceptron improves its predictions by adjusting the weights and bias in a way that reduces the loss. This process is known as <strong>training</strong>, and one common method used for training is <strong>Gradient Descent</strong>.</p>
+<h2 id="what-is-gradient-descent">What Is Gradient Descent?<a hidden class="anchor" aria-hidden="true" href="#what-is-gradient-descent">#</a></h2>
+<p>Gradient descent is an optimization algorithm used to minimize the loss function.</p>
+<p>Here’s how it works:</p>
+<ol>
+<li>Start with random values for weights and bias.</li>
+<li>Compute the loss using the current model.</li>
+<li>Calculate how much each weight and the bias contributed to the loss — this is called the <strong>gradient</strong>.</li>
+<li>Adjust the weights and bias in the opposite direction of the gradient to reduce the loss.</li>
+<li>Repeat this process over many steps (called iterations or epochs) until the loss is as low as possible.</li>
+</ol>
+<p>Over time, the model finds a decision boundary (line or plane) that separates the classes with the smallest number of errors.</p>
+<h2 id="why-not-just-use-the-perceptron-trick">Why Not Just Use the Perceptron “Trick”?<a hidden class="anchor" aria-hidden="true" href="#why-not-just-use-the-perceptron-trick">#</a></h2>
+<p>In traditional perceptron algorithms, if the model misclassifies a point, it simply adjusts the weights by moving the line toward that point. This method works for linearly separable data, but:</p>
+<ul>
+<li>It doesn’t provide a way to measure how bad a prediction is.</li>
+<li>It cannot be optimized in a continuous or controlled way.</li>
+<li>It may not converge on messy or noisy datasets.</li>
+</ul>
+<p>Using a proper loss function allows the model to quantify and compare how different configurations of the model perform, making training more stable and systematic.</p>
+<h2 id="different-loss-functions-for-different-problems">Different Loss Functions for Different Problems<a hidden class="anchor" aria-hidden="true" href="#different-loss-functions-for-different-problems">#</a></h2>
+<p>The perceptron loss is one type of loss function. Depending on the problem, you may choose a different one:</p>
+<ul>
+<li><strong>Mean Squared Error</strong> — for regression tasks</li>
+<li><strong>Log Loss</strong> — for logistic regression</li>
+<li><strong>Hinge Loss</strong> — for support vector machines</li>
+<li><strong>Perceptron Loss</strong> — for basic classification using the perceptron</li>
+</ul>
+<p>Choosing the right loss function is essential for training an effective model.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/perceptron/">Perceptron</a></li>
+      <li><a href="http://localhost:1313/tags/loss-function/">Loss Function</a></li>
+      <li><a href="http://localhost:1313/tags/gradient-descent/">Gradient Descent</a></li>
+      <li><a href="http://localhost:1313/tags/machine-learning/">Machine Learning</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">My Portfolio</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
