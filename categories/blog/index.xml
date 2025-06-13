@@ -6,8 +6,18 @@
     <description>Recent content in Blog on My Portfolio</description>
     <generator>Hugo -- 0.147.7</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 13 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://Yashh9706.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Perceptron Loss Function Explained: Gradient Descent and Binary Classification Guide</title>
+      <link>https://Yashh9706.github.io/posts/perceptron-loss-function/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://Yashh9706.github.io/posts/perceptron-loss-function/</guid>
+      <description>&lt;h1 id=&#34;understanding-the-perceptron-loss-function-and-gradient-descent&#34;&gt;Understanding the Perceptron Loss Function and Gradient Descent&lt;/h1&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Hello, everyone!&lt;br&gt;
+My name is Yash, and welcome to my new blog! In this blog, we will explore what is Loss function. In machine learning, one of the fundamental goals is to create models that can learn patterns from data and make predictions. A common type of prediction problem is classification — for example, predicting whether an employee will get promoted based on features such as age and years of experience.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Understanding the Perceptron: A Deep Learning Foundation</title>
       <link>https://Yashh9706.github.io/posts/what-is-a-perceptron/</link>
