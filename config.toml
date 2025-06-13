@@ -6,7 +6,7 @@ languageCode = "en-us"
 [params]
   author = "Yash Dave"
   homeInfoParams = { Title = "Hi, I'm Yash Dave 👋", Content = "Welcome to my portfolio." }
-
+  math = true
 [[menu.main]]
   name = "About"
   url = "/about/"
@@ -21,3 +21,5 @@ languageCode = "en-us"
   name = "Blog"
   url = "/posts/"
   weight = 3
+  
+
